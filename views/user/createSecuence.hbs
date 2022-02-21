@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Request secuence</title>
+</head>
+<body>
+	{{#if number}}
+	<form method="post" action="/user/createSecuence/create">
+		{{#each cant}}
+				<input type="number" name="term">, 
+		{{/each}}
+		<textarea placeholder="Description" name="description"></textarea>
+		<button type="submit">Send</button>
+	</form>
+
+	{{else}}
+	<div>
+		<form method="get" action="/user/createSecuence/create">
+			<input type="number" name="cant" placeholder="number of terms" min="4" max="20">
+			<button type="submit">send</button>
+		</form>
+	</div>
+	{{/if}}
+	{{#if error}}
+		<h4>{{message}}</h4>
+	{{/if}}
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Admin {{username}}</title>
+</head>
+<body>
+	<div style="height:80vh; overflow:auto">
+		<table>
+			<thead>
+				<tr>
+					<th>Time</th>
+					<th>Ip</th>
+					<th>Username</th>
+					<th>Change</th>
+				</tr>
+			</thead>
+			{{#each changelog}}
+			<tr>
+				<td>{{time}}</td>
+				<td>{{ip}}</td>
+				<td>{{username}}</td>
+				<td>{{changes}}</td>
+			</tr>
+			{{/each}}
+		</table>
+	</div>
+</body>
+</html>

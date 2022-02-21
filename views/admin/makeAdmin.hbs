@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>manage admins</title>
+</head>
+<body>
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th>User</th>
+					<th>Email</th>
+					<th>Admin(yes/no)</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each userList}}
+					<tr>
+						<td>{{username}}</td>
+						<td>{{email}}</td>
+						<td>{{isAdmin}}</td>
+						<td>
+							<form action="/admin/makeAdmin/switch" method="post">
+								<input type="hidden" name="username" value="{{username}}">
+								<button type="submit">Toggle</button>
+							</form>
+						</td>
+					</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

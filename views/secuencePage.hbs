@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{data.secuence}}</title>
+</head>
+<body>
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Secuence</th>
+					<th>Requester</th>
+					<th>Solution</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{data.secuence_id}}</td>
+					<td>{{data.secuence}}</td>
+					<td>{{data.requester}}</td>
+					{{#if_exists data.solution}}
+              			<td>{{data.solution}}</td>
+           			{{else}}
+              			<td>Not solved</td>
+            		{{/if_exists}}
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<h3>Description</h3>
+		<p>{{data.description}}</p>
+		{{#if_exists admin}}
+			<form method="get" action="/secuencePage/changeDescription">
+				<textarea placeholder="change description" name="newDescription"></textarea>
+				<input type="hidden" name="secuence" value="{{data.secuence}}">
+				<button type="submit">Send</button>
+			</form>
+		{{/if_exists}}
+		{{#if_exists data.solution}}
+		{{else}}
+		<div>
+			<form action="/secuencePage/trySolve" method="post">
+				<textarea name="solution" placeholder="Try to solve it"></textarea>
+				<input type="hidden" name="secuence" value="{{data.secuence}}">
+				<button type="submit">Send</button>
+			</form>
+		</div>
+		{{/if_exists}}
+		<table>
+			<thead>
+				<tr>
+					<th>Solution</th>
+					<th>Requester</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each solves}}	
+				<tr>
+					<td>{{solveTry}}</td>
+					<td>{{requester}}</td>
+					<td>
+						{{#if_exists data.solution}}
+						{{else}}
+						<form action="/secuencePage/solve" method="post">
+							<input type="hidden" name="solve" value="{{solveTry}}">
+							<input type="hidden" name="secuence" value="{{secuence}}">
+							<button type="submit">Solve</button>
+						</form>
+						{{/if_exists}}
+					</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+
+	</div>
+	{{#if error}}
+		<h4>{{message}}</h4>
+	{{/if}}
+</body>
+</html>
