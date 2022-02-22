@@ -9,6 +9,8 @@ var logs = require('./models/logs');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var fileUpload = require('express-fileupload');
+
 
 var app = express();
 
@@ -24,6 +26,12 @@ app.use(sessions({
   resave:false
 }));
 
+app.use(fileUpload({
+  useTempFiles:true,
+  tempFileDir:'/tmp/'
+}));
+
+
 
 var secuencesRouter = require('./routes/secuences');
 var secuencePageRouter = require('./routes/secuencePage');
@@ -32,7 +40,6 @@ var adminLogsRouter = require('./routes/admin/logs');
 var adminConnectedRouter = require('./routes/admin/connected');
 var createSecuenceRouter = require('./routes/user/createSecuence');
 var makeAdminRouter = require('./routes/admin/makeAdmin');
-
 
 
 adminSecured = async(req, res, next)=>{

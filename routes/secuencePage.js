@@ -4,7 +4,13 @@ var solutions = require('../models/solutions');
 var logs = require('../models/logs');
 var alert = require('alert')
 
+var cloudinary = require('cloudinary').v2;
+var util = require('util');
+const uploader = util.promisify(cloudinary.uploader.upload)
+
+
 router.get('/', async function(req, res, next){
+
 	try {
 		if(req.query.secuence == undefined){
 			res.redirect('/')
@@ -15,12 +21,21 @@ router.get('/', async function(req, res, next){
 		var solves = await solutions.getSolutions(secuence);
 		var admin = req.session.admin;
 		console.log(solves);
+		var image = '';
+		if (data.id_img) {
+			image = cloudinary.image(data.id_img, {
+				width:200,
+				height:200,
+				crop:'fill'
+			})
+		}
 		res.render('secuencePage', {
 			admin,
 			solves,
 			recents,
 			data,
-			layout:'layout'
+			layout:'layout',
+			image
 		})
 	}catch (error){
 		console.log(error, 'secuencePage:/');
@@ -53,6 +68,14 @@ router.post('/solve', async function(req, res, next){
 		var data = await secuences.getSecuence(secuence);
 		var recents = await secuences.lastSecuences();
 		var solves = await solutions.getSolutions(secuence);
+		var image = '';
+		if (data.id_img) {
+			image = cloudinary.image(data.id_img, {
+				width:200,
+				height:200,
+				crop:'fill'
+			})
+		}
 		var admin = req.session.admin;
 		res.render('secuencePage',{
 			data,
@@ -60,7 +83,8 @@ router.post('/solve', async function(req, res, next){
 			solves,
 			layout:'layout',
 			error:true,
-			message:'you dont have the permissions to do that'
+			message:'you dont have the permissions to do that',
+			image
 		});
 	}
 })
@@ -75,13 +99,60 @@ router.get('/changeDescription',async function(req, res, next){
 	var data = await secuences.getSecuence(secuence);
 	console.log(secuence, newDescription)
 	var admin = req.session.admin;
+	var image = '';
+	if (data.id_img) {
+		image = cloudinary.image(data.id_img, {
+			width:200,
+			height:200,
+			crop:'fill'
+		})
+	}
 	res.render('secuencePage',{
 			data,
 			recents,
 			solves,
 			layout:'layout',
-			admin
+			admin,
+			image
 		});
 });
+
+
+router.post('/changeImage', async function(req, res, next){
+	try{
+		var admin = req.session.admin;
+		var img_id ='';
+		var secuence = req.body.secuence;
+		var data = await secuences.getSecuence(secuence);
+		
+		if (req.files && Object.keys(req.files).length > 0){
+			var image = req.files.image
+			img_id = (await uploader(image.tempFilePath)).public_id;
+		}
+		if (await secuences.changeImage(secuence, img_id) && admin) {
+			res.redirect('back')
+			
+		}else{
+			console.log(2);
+			var data = await secuences.getSecuence(secuence);
+			var solves = await solutions.getSolutions(secuence);
+			var recents = await secuences.lastSecuences();
+			res.render('secuencePage',{
+				data,
+				recents,
+				solves,
+				layout:'layout',
+				admin,
+				error:true,
+				message:'There was an error'
+			})
+		}
+	}catch(error){
+		console.log(error);
+	}
+
+
+
+})
 
 module.exports = router;

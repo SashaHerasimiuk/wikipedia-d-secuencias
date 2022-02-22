@@ -1,10 +1,10 @@
 var pool = require('./dataBase');
 
 
-async function createSecuence(name, secuence, description){
+async function createSecuence(name, secuence, description, id_img){
 	try{
-		var query = 'insert into secuences (requester, secuence, description) values (?, ?, ?)';
-		await pool.query(query, [name, secuence, description]);
+		var query = 'insert into secuences (requester, secuence, description, id_img) values (?, ?, ?, ?)';
+		await pool.query(query, [name, secuence, description, id_img]);
 		return false;
 	}catch (error){
 		console.log(error, 'createSecuence');
@@ -77,9 +77,22 @@ async function changeDescription(secuence, description){
 	}
 }
 
+async function changeImage(secuence, img_id){
+	try{
+		var query = 'update secuences set id_img=? where secuence=?';
+		await pool.query(query,[img_id, secuence]);
+		return true;
+	}catch(error){
+		console.log(error);
+		return false;
+	}
+}
+
+
+
 
 
 
 module.exports = {
-	createSecuence, getSecuence, getSecuences, deleteSecuence, selectSolution, lastSecuences, search, changeDescription
+	createSecuence, getSecuence, getSecuences, deleteSecuence, selectSolution, lastSecuences, search, changeDescription, changeImage
 }

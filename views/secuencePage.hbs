@@ -30,14 +30,29 @@
 			</tbody>
 		</table>
 		<br>
+		<div>
+			{{#if_exists data.id_img}}
+			where to find the secuence
+				{{{image}}}
+			{{/if_exists}}
+		</div>
+		<br>
 		<h3>Description</h3>
 		<p>{{data.description}}</p>
 		{{#if_exists admin}}
 			<form method="get" action="/secuencePage/changeDescription">
 				<textarea placeholder="change description" name="newDescription"></textarea>
 				<input type="hidden" name="secuence" value="{{data.secuence}}">
+
 				<button type="submit">Send</button>
 			</form>
+			<br>
+			<form method="post" action="/secuencePage/changeImage" enctype="multipart/form-data">
+				<input type="hidden" name="secuence" value="{{data.secuence}}">
+				<label>Change image<input type="file" name="image"></label>
+				<button type="submit">Change</button>
+			</form>
+			<br>
 		{{/if_exists}}
 		{{#if_exists data.solution}}
 		{{else}}
