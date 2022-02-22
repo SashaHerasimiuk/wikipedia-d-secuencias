@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 21-02-2022 a las 20:43:59
+-- Tiempo de generación: 22-02-2022 a las 21:12:32
 -- Versión del servidor: 5.7.36
 -- Versión de PHP: 7.4.26
 
@@ -18,10 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `prueba2`
+-- Base de datos: `prueba3`
 --
-CREATE DATABASE IF NOT EXISTS `prueba2` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `prueba2`;
 
 -- --------------------------------------------------------
 
@@ -57,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `changelog` (
   `username` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `changes` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=520 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=558 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `changelog`
@@ -582,7 +580,45 @@ INSERT INTO `changelog` (`log_id`, `time`, `ip`, `username`, `changes`) VALUES
 (516, '2022-02-19 17:36:18.000000', '127.0.0.1', 'sasha', 'logged in'),
 (517, '2022-02-19 17:37:21.000000', '127.0.0.1', 'sasha', 'logged in'),
 (518, '2022-02-19 17:37:33.000000', '', 'sasha', 'disconnected'),
-(519, '2022-02-19 20:07:34.000000', '127.0.0.1', 'sasha', 'logged in');
+(519, '2022-02-19 20:07:34.000000', '127.0.0.1', 'sasha', 'logged in'),
+(520, '2022-02-21 19:35:53.000000', '127.0.0.1', 'sasha', 'logged in'),
+(521, '2022-02-21 19:39:05.000000', '127.0.0.1', 'sasha', 'created secuence:1,2,2,2'),
+(522, '2022-02-21 19:41:36.000000', '127.0.0.1', 'sasha', 'logged in'),
+(523, '2022-02-21 19:41:53.000000', '127.0.0.1', 'sasha', 'created secuence:1,1,2,2'),
+(524, '2022-02-21 19:43:01.000000', '127.0.0.1', 'sasha', 'logged in'),
+(525, '2022-02-21 19:45:16.000000', '', 'unknown', 'insecure user log'),
+(526, '2022-02-21 19:45:20.000000', '', 'sasha', 'logged in'),
+(527, '2022-02-21 19:45:30.000000', '', 'sasha', 'created secuence:1,1,2,1'),
+(528, '2022-02-21 19:48:13.000000', '127.0.0.1', 'sasha', 'logged in'),
+(529, '2022-02-21 19:49:27.000000', '127.0.0.1', 'unknown', 'insecure user log'),
+(530, '2022-02-21 19:49:43.000000', '', 'sasha', 'logged in'),
+(531, '2022-02-21 19:51:23.000000', '127.0.0.1', 'unknown', 'insecure user log'),
+(532, '2022-02-21 19:51:28.000000', '127.0.0.1', 'sasha', 'logged in'),
+(533, '2022-02-21 19:51:37.000000', '127.0.0.1', 'sasha', 'created secuence:3,1,3,1'),
+(534, '2022-02-21 19:53:57.000000', '127.0.0.1', 'unknown', 'insecure user log'),
+(535, '2022-02-21 19:54:01.000000', '127.0.0.1', 'sasha', 'logged in'),
+(536, '2022-02-21 19:54:46.000000', '', 'unknown', 'insecure user log'),
+(537, '2022-02-21 19:54:53.000000', '127.0.0.1', 'sasha', 'logged in'),
+(538, '2022-02-21 19:55:58.000000', '127.0.0.1', 'unknown', 'insecure user log'),
+(539, '2022-02-21 19:56:01.000000', '127.0.0.1', 'sasha', 'logged in'),
+(540, '2022-02-21 19:57:09.000000', '', 'unknown', 'insecure user log'),
+(541, '2022-02-21 19:57:12.000000', '', 'sasha', 'logged in'),
+(542, '2022-02-21 19:57:28.000000', '127.0.0.1', 'sasha', 'created secuence:1,4,4,1'),
+(543, '2022-02-21 20:01:47.000000', '127.0.0.1', 'sasha', 'logged in'),
+(544, '2022-02-22 17:39:55.000000', '127.0.0.1', 'sasha', 'logged in'),
+(545, '2022-02-22 17:52:01.000000', '127.0.0.1', 'sasha', 'logged in'),
+(546, '2022-02-22 17:53:20.000000', '127.0.0.1', 'sasha', 'logged in'),
+(547, '2022-02-22 17:54:16.000000', '127.0.0.1', 'sasha', 'logged in'),
+(548, '2022-02-22 17:55:41.000000', '127.0.0.1', 'sasha', 'logged in'),
+(549, '2022-02-22 17:56:41.000000', '127.0.0.1', 'sasha', 'logged in'),
+(550, '2022-02-22 17:59:16.000000', '127.0.0.1', 'sasha', 'logged in'),
+(551, '2022-02-22 17:59:46.000000', '127.0.0.1', 'sasha', 'logged in'),
+(552, '2022-02-22 18:01:53.000000', '', 'sasha', 'logged in'),
+(553, '2022-02-22 18:02:41.000000', '127.0.0.1', 'sasha', 'logged in'),
+(554, '2022-02-22 18:03:14.000000', '127.0.0.1', 'sasha', 'logged in'),
+(555, '2022-02-22 18:05:16.000000', '127.0.0.1', 'sasha', 'logged in'),
+(556, '2022-02-22 18:06:19.000000', '127.0.0.1', 'sasha', 'logged in'),
+(557, '2022-02-22 18:08:24.000000', '127.0.0.1', 'sasha', 'logged in');
 
 -- --------------------------------------------------------
 
@@ -600,7 +636,7 @@ CREATE TABLE IF NOT EXISTS `secuences` (
   `id_img` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`secuence_id`),
   UNIQUE KEY `secuence` (`secuence`)
-) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `secuences`
@@ -614,7 +650,12 @@ INSERT INTO `secuences` (`secuence_id`, `requester`, `secuence`, `description`, 
 (31, 'sasha', '1,2,3,4,5', 'one to five', 'f(x)=x', NULL),
 (32, 'sasha', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20', 'all integer positive numbers', 'f(x) = x', NULL),
 (33, 'sasha', '4,4,4,4,4', 'infinite fours\r\n', 'f(x) = 4', NULL),
-(34, 'sasha', '5,5,5,5', 'infinite fives', NULL, NULL);
+(34, 'sasha', '5,5,5,5', 'infinite fives', NULL, 'ebyxnn1x4xec63vvv7ts'),
+(35, 'sasha', '1,2,2,2', '', NULL, 'es2trpzkz93ypiu22af7'),
+(36, 'sasha', '1,1,2,2', '', NULL, ''),
+(37, 'sasha', '1,1,2,1', '', NULL, 'ncxbsbmgljt25jfmrj8n'),
+(38, 'sasha', '3,1,3,1', 'asd', NULL, 'fr6rfp6kfhrygegkbbrl'),
+(39, 'sasha', '1,4,4,1', '', NULL, 'mg5wynmsny0a8zhg0d1i');
 
 -- --------------------------------------------------------
 
